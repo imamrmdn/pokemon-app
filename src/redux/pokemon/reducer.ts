@@ -16,10 +16,11 @@ export interface IResultPokemon {
 type QueryArgs = number | string | void;
 
 export const pokemonSlice = createApi({
-  reducerPath: "get_all_pokemon",
+  reducerPath: "pokemonApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://pokeapi.co/api/v2/pokemon",
   }),
+  tagTypes: ["GetAllPokemon"],
   endpoints(builder) {
     return {
       fetchPokemon: builder.query<IResponseApiPokemon, QueryArgs>({
@@ -27,6 +28,7 @@ export const pokemonSlice = createApi({
         query(limit = 5) {
           return `/?limit=${limit}`;
         },
+        providesTags: ["GetAllPokemon"],
       }),
     };
   },

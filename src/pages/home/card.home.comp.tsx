@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 
 interface CardCompProps {
-  data?: IResponseApiPokemon;
+  data: IResponseApiPokemon | undefined;
   isLoading?: boolean;
   value: string;
   defaultValue: string;
@@ -40,7 +40,12 @@ export default function CardComponent(props: CardCompProps) {
         </Select>
       </FormControl>
       {props?.isLoading ? (
-        <Skeleton variant="rounded" width="42vh" height="10vh" />
+        <Skeleton
+          variant="rounded"
+          animation="wave"
+          width="42vh"
+          height="15vh"
+        />
       ) : (
         props?.data?.results?.map((e) => (
           <Card key={e.url} sx={{ width: "42vh", marginBottom: "1vh" }}>
